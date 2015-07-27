@@ -1,3 +1,7 @@
 <% include layout %>
-<p>ID: <%= user.id %></p>
+<% if (user.google) { %>
+<p>ID: <%= user.google.id %></p>
+<% } else if (user.twitter) { %>
+<p>ID: <%= user.twitter.id %></p>
+<% } %>
 <p>Name: <%= user.displayName %></p>
