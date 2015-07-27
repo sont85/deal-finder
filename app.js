@@ -7,12 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
-var googleStrategy = require('./config/googleStrategy.js');
 
 var auth = require('./routes/auth');
 var routes = require('./routes/index');
 
 var app = express();
+require('./config/passport.js')(app);
 
 
 // view engine setup
@@ -26,11 +26,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(session({ secret: 'findingdeals' }));
+app.use(session({ secret: 'findingdeals', saveUninitialized: true, resave: true }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
-app.use(passport.initialize());
-app.use(passport.session());
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 
