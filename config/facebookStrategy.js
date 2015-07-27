@@ -6,14 +6,16 @@ module.exports = function() {
   passport.use(new FacebookStrategy({
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: 'http://localhost:3000/auth/facebook/callback'
+      callbackURL: 'http://localhost:3000/auth/facebook/callback',
+      profileFields: ['email','photos', 'displayName']
     },
     function(accessToken, refreshToken, profile, done) {
       // asynchronous verification, for effect...
       process.nextTick(function () {
         console.log(profile);
         var user = {};
-        // user.image = profile._json.image.url;
+        user.email = profile.emails[0].value;
+        user.image = profile.photos[0].value;
         user.displayName = profile.displayName;
 
         user.facebook = {};

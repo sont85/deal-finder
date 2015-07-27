@@ -25,8 +25,8 @@ module.exports = function() {
         console.log(profile);
         var user = {};
         user.displayName = profile.displayName;
-        user.image = profile._json_profile_image_url;
-
+        user.image = profile._json.profile_image_url;
+        
         user.twitter = {};
         user.twitter.id = profile.id;
         user.twitter.token = token;
