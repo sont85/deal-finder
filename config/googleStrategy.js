@@ -17,12 +17,19 @@ module.exports = function() {
       // asynchronous verification, for effect...
       process.nextTick(function () {
         console.log(profile);
+        var user = {};
+        user.image = profile._json.image.url;
+        user.displayName = profile.displayName;
+
+        user.google = {};
+        user.google.id = profile.id;
+        user.google.token = accessToken;
 
         // To keep the example simple, the user's Google profile is returned to
         // represent the logged-in user.  In a typical application, you would want
         // to associate the Google account with a user record in your database,
         // and return that user instead.
-        return done(null, profile);
+        return done(null, user);
       });
     }
   ));

@@ -12,7 +12,6 @@ var auth = require('./routes/auth');
 var routes = require('./routes/index');
 
 var app = express();
-require('./config/passport.js')(app);
 
 
 // view engine setup
@@ -29,6 +28,7 @@ app.use(cookieParser());
 app.use(session({ secret: 'findingdeals', saveUninitialized: true, resave: true }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
+require('./config/passport.js')(app);
 
 
 app.use(express.static(path.join(__dirname, 'public')));

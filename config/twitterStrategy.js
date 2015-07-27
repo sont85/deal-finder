@@ -24,11 +24,18 @@ module.exports = function() {
       // asynchronous verification, for effect...
       process.nextTick(function () {
         console.log(profile);
+        var user = {};
+        user.displayName = profile.displayName;
+        user.image = profile._json_profile_image_url;
+
+        user.twitter = {};
+        user.twitter.id = profile.id;
+        user.twitter.token = token;
         // To keep the example simple, the user's Twitter profile is returned to
         // represent the logged-in user.  In a typical application, you would want
         // to associate the Twitter account with a user record in your database,
         // and return that user instead.
-        return done(null, profile);
+        return done(null, user);
       });
     }
   ));
