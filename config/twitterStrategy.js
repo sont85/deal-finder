@@ -17,10 +17,9 @@ module.exports = function() {
   passport.use(new TwitterStrategy({
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: 'http://localhost:3000/auth/twitter/callback',
-      passReqToCallback: true
+      callbackURL: 'http://localhost:3000/auth/twitter/callback'
     },
-    function(req, token, tokenSecret, profile, done) {
+    function(token, tokenSecret, profile, done) {
       // asynchronous verification, for effect...
       process.nextTick(function () {
         console.log(profile);

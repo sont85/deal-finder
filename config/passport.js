@@ -3,6 +3,7 @@
 var passport = require('passport');
 require('./googleStrategy')();
 require('./twitterStrategy')();
+require('./FacebookStrategy')();
 
 module.exports = function(app) {
   app.use(passport.initialize());
