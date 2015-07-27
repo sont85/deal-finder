@@ -100,9 +100,6 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/login');
 }
 
-
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
